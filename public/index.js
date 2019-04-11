@@ -52,10 +52,13 @@ function addReview(name, rating, review) {
   fetch("/postreview", {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
-      body: {data}
+      body: JSON.stringify({mydata : data})
     })
     .then(function (response) {
       return response.json();
+    })
+    .then(function(data){
+      console.log(data);
     })
     .catch(function (error) {
       return error;
@@ -73,13 +76,17 @@ reviewSubmit.addEventListener("click", function(e) {
   addReview(localName, localRating, localReview)
 })
 
-// function getTopRated(num){
-//   let topratedelements = document.getElementsByClassName('topRated');
-//   getTopRatedPlaces(num,function(d){
-//     // console.log(d);
-//   })
-// }
-// getTopRated(4);
+function getTopRated(num){
+  let topratedelements = Array.from(document.getElementsByClassName('topRated'));
+  console.log(topratedelements);
+  getTopRatedPlaces(num,function(d){
+    console.log(d);
+    topratedelements.map(function (currentdiv,i){
+      return currentdiv.firstChild.src = './assets/'+d[i].picture;
+    })
+  })
+}
+getTopRated(4);
 
 getRestaurant("Nazareth", "Tishreen", function(d) {
   legendName.textContent = d.name;

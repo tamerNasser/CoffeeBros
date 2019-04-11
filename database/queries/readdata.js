@@ -1,6 +1,7 @@
 const selectquery = require('./selectquery');
 
 
+
 const getReviews = (cb) => selectquery('SELECT * from review;', cb)
 const getPlaces = (cb) => selectquery('SELECT * from places;',cb)
 const getAddressByID = (placeid,cb) => selectquery(`SELECT * from address where id =${placeid};`, cb)

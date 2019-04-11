@@ -1,5 +1,5 @@
 function getTopRatedPlaces(num, cb) {
-
+console.log(num);
   fetch('/toprated?limit=' + num)
     .then(function(response) {
       return response.json();
